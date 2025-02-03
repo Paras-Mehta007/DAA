@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int n,key;
+    printf("enter the value of n:");
+    scanf("%d",&n);
+    
+    
+    
+    int arr[100];
+    
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    
+    printf(" enter the key to be seached:");
+    scanf("%d",&key);
+    
+    int start=0;
+    int  end=n-1;
+    
+    while(start<end){
+        
+        int mid=start+(end-start)/2;
+        
+        if(arr[mid]==key)
+        {
+            printf("key found %d",mid);
+        }
+        else if(arr[mid]>key)
+        {
+            start=mid+1;
+        }
+        else
+        end=mid-1;
+    }
+    
+    
+    return 0;
+}
