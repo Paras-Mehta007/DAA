@@ -1,0 +1,41 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+
+int finddupliacte(int arr[],int n)
+{
+       vector<int> vec(arr, arr + n);
+    sort(vec.begin(),vec.end());
+    
+    for(int i=0;i<n-1;i++)
+    {
+        if(vec[i]=vec[i+1])
+        return 1;
+    }
+    
+    return 0;
+}
+int main()
+{
+    int n;
+    cout<<"enter the size of the array";
+    cin>>n;
+    
+    int arr[n];
+    cout<<"enter the elements of the array ";
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    
+    int ans=finddupliacte(arr,n);
+    if(ans==1)
+    {
+        cout<<"Dupliacte Element exsist";
+    }
+    else
+    cout<<" No  duplicate  Element exist";
+   return 0;
+}
