@@ -1,0 +1,78 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int comparison = 0;
+int swapcount = 0;
+
+int partition(vector<int>& arr, int low, int high)
+{
+    int pivot = arr[high];  /
+    int i = low - 1;  
+    
+    for (int j = low; j <= high - 1; j++)
+    {
+        comparison++;  
+        if (arr[j] <= pivot)
+        {
+            i++;
+            
+            swap(arr[i], arr[j]);
+            swapcount++; 
+        }
+    }
+
+    swap(arr[i + 1], arr[high]);
+    swapcount++;  
+    return (i + 1);  
+}
+
+
+void quicksort(vector<int>& arr, int low, int high)
+{
+    if (low < high)
+    {
+        int pi = partition(arr, low, high);  
+
+        quicksort(arr, low, pi - 1); 
+        quicksort(arr, pi + 1, high); 
+    }
+}
+
+
+void printvector(const vector<int>& arr)
+{
+    for (int i = 0; i < arr.size(); i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int main()
+{
+    int n;
+    cout << "Enter the size of the array: ";
+    cin >> n;
+    
+    vector<int> arr(n);
+    
+    cout << "Enter the elements of the array: ";
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    
+    cout << "Before sorting: ";
+    printvector(arr);
+    
+    quicksort(arr, 0, n - 1);
+    
+    cout << "After sorting: ";
+    printvector(arr);
+    
+    cout << "Number of comparisons: " << comparison << endl;
+    cout << "Number of swaps: " << swapcount << endl;
+    
+    return 0;
+}
