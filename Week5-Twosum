@@ -4,6 +4,29 @@
 
 using namespace std;
 
+// By using unordered_map
+
+
+void twosum(vector<int>&arr,int key)
+{
+ onordered_map<int,int>mp;
+
+for(int i=0;i<arr.size();i++){
+ int comp=key-arr[i];
+
+ if(mp.find(comp)!=mp.end()){
+  cout << "Pair found: (" << complement << ", " << arr[i]<< ")" << endl;
+            return; 
+}
+
+map[arr[i]]=1
+}
+
+cout<<"Element not found";
+}
+
+
+// By sorting the array 
 void twosum(vector<int>& arr, int key, vector<pair<int, int>>& ans) {
     sort(arr.begin(), arr.end());  // Sort the array
     
@@ -41,6 +64,10 @@ int main() {
 
     vector<pair<int, int>> ans;
     twosum(arr, key, ans);
+
+
+ // for map
+  twosum(arr,key);
 
     if (ans.empty()) {
         cout << "Element not found" << endl;
