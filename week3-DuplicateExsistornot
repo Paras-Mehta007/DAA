@@ -11,7 +11,7 @@ int finddupliacte(int arr[],int n)
     
     for(int i=0;i<n-1;i++)
     {
-        if(vec[i]=vec[i+1])
+        if(vec[i]==vec[i+1])
         return 1;
     }
     
