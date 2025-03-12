@@ -2,56 +2,43 @@
 #include<vector>
 using namespace std;
 
-void triplets(int arr[],int n )
-{
-    vector<vector<int>> ans;
-    
-    for(int i=0;i<n-2;i++)
-    {
-        for(int j=i+1;j<n-1;j++)
-        {
-            for(int k=j+1;k<n;k++)
-            {
-                if(arr[i]+arr[j]==arr[k])
-                {
-                    // ans.push_back({arr[i],arr[j],arr[k]});
-                     ans.push_back({i,j,k});
-                }
+void findTriplets(vector<int>& arr, int n) {
+    bool found = false;
+
+    // Iterate over k (the sum)
+    for(int k = 2; k < n; k++) {
+        int i = 0, j = k - 1;
+
+        // Two-pointer approach to find arr[i] + arr[j] == arr[k]
+        while(i < j) {
+            if(arr[i] + arr[j] == arr[k]) {
+                cout << "Indices: " << i << ", " << j << ", " << k << endl;
+                found = true;
+                i++; j--; // Move both pointers to find other possible pairs
+            } else if(arr[i] + arr[j] < arr[k]) {
+                i++; // Increase sum
+            } else {
+                j--; // Decrease sum
             }
         }
     }
-  
-  if(ans.empty())
-  {
-      cout<<"NO triplet found";
-  }
-  else
-  {
-      for(auto &triplets: ans)
-      {
-          cout<<triplets[0]<<","<<triplets[1]<<","<<triplets[2];
-      }
-  }
 
+    if(!found) {
+        cout << "No triplet found." << endl;
+    }
 }
 
-int main()
-{
+int main() {
     int n;
-    cout<<"enter the size of the array";
+    cout << "Enter the size of the array: ";
+    cin >> n;
 
-    cin>>n;
-    int arr[n];
-    
-    cout<<"enter te elements of the sorted array"<<endl;
-    
-    for(int i=0;i<n;i++)
-    {
-        cin>>arr[i];
+    vector<int> arr(n);
+    cout << "Enter the elements of the sorted array: ";
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
     }
-    
-    
-   triplets(arr,n);
-    
 
+    findTriplets(arr, n);
+    return 0;
 }
