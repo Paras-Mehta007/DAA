@@ -16,9 +16,9 @@ void insertionsort(int arr[],int n)
             j=j-1;
              shifting++;
         }
-        comparison++;
         
         arr[j+1]=key;
+shifting++;
     }
     
     cout<<"total comparison"<<comparison<<endl;
