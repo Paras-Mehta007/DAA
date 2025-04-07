@@ -1,0 +1,52 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+bool dfs(vector<vector<int>>& graph, vector<bool>& visited, int v, int destination) {
+    visited[v] = true;
+    if (v == destination) {
+        return true;
+    }
+    for (int i = 0; i < graph.size(); ++i) {
+        if (graph[v][i] == 1 && !visited[i]) {
+            // Recursively visit the unvisited neighbors
+            if (dfs(graph, visited, i, destination)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+int main() {
+    int n;
+    cout << "Enter the number of nodes : ";
+    cin >> n;
+    
+    vector<vector<int>> arr(n, vector<int>(n));
+    cout << "Enter the adjacency matrix (0 or 1):\n";
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> arr[i][j];
+        }
+    }
+
+    cout << "Enter the source vertex : ";
+    int s;
+    cin >> s;
+    cout << "Enter the destination vertex : ";
+    int d;
+    cin >> d;
+    s-=1;
+    d-=1;
+
+    vector<bool> visited(n, false);  // Initialize the visited array to false
+
+    if (dfs(arr, visited, s, d)) {
+        cout << "Yes, a path exists from " << s << " to " << d << endl;
+    } else {
+        cout << "No such path exists from " << s << " to " << d << endl;
+    }
+
+    return 0;
+}
